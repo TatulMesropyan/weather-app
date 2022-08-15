@@ -1,4 +1,12 @@
-.flex-container {
-    display: flex;
-
+.background-wrap {
+    height: 100vh;
+    background-image: url(Components/Assets/Pics/Background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    filter: blur(5px)
 }

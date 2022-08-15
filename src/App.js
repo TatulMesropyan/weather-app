@@ -1,33 +1,23 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
-import {Box, Button, Grid, TextField} from "@mui/material";
+import React, {useState} from "react";
+import './App.css';
+import Search from "./Components/Search/Search";
+import {Box} from "@mui/material";
+import {useSpring, animated} from "react-spring";
 
 function App() {
 	const [data, setData] = useState({})
-	const [city, setCity] = useState('');
-	const [country, setCountry] = useState('');
-	const location = `${city},${country}`
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=dc97e894c5d1389bd78904bb5cd1d0d3`
-
-	const getData = () => {
-		axios.get(url)
-			.then(res => {
-				const apiData = res.data;
-				setData({apiData});
-				setCity('')
-				setCountry('')
-			})
-			.catch(error => console.error('Alert data not found'))
-	}
-	useEffect(() => {
-		console.log(data)
-	}, [data])
+	const [page, setPage] = useState(true)
+	const animations = useSpring({
+		opacity: page ? 1 : 0,
+		y: page ? 0 : 24,
+	})
 	return (
-		<div className='flex-container'>
-			<TextField value={city} fullWidth onChange={(e) => setCity(e.target.value)} label='City'/>
-			<TextField value={country} fullWidth onChange={(e) => setCountry(e.target.value)} label='Country'/>
-			<Button onClick={getData}>Submit</Button>
-		</div>
+		<Box sx={{'height': '100vh'}}>
+			<div className='background-wrap'></div>
+			<animated.div style={animations}>
+				<Search setData={setData}/>
+			</animated.div>
+		</Box>
 	);
 }
 
