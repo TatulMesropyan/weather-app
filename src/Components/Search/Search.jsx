@@ -2,19 +2,19 @@ import React, {useState} from "react";
 import axios from "axios";
 import {Box, Button, TextField, Typography} from "@mui/material";
 
-const Search = ({setData}) => {
+const Search = ({setData,setPage}) => {
 	const [city, setCity] = useState('');
 	const [country, setCountry] = useState('');
 	const location = `${city},${country}`
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=dc97e894c5d1389bd78904bb5cd1d0d3`
 
-	const getData = () => {
-		axios.get(url)
+	const getData = async () => {
+		await axios.get(url)
 			.then(res => {
-				const apiData = res.data;
-				setData({apiData});
+				setData(res.data);
 				setCity('')
 				setCountry('')
+				setPage(false);
 			})
 			.catch(() => console.error('Alert data not found'))
 	};
