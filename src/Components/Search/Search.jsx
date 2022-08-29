@@ -22,7 +22,6 @@ const Search = ({setData,setPage}) => {
 	return (
 		<Box sx={{"margin": "0 40%", "textAlign": "center", "paddingTop": "15%", "position": 'fixed', 'zIndex': '3'}}>
 			<Typography variant='h3' fontStyle='italic'>
-				Weather
 			</Typography>
 			<TextField value={city} variant="standard" fullWidth onChange={(e) => setCity(e.target.value)} label='City'
 					   sx={{"marginBottom": "10px", "marginTop": "10px"}} placeholder='Yerevan'/>

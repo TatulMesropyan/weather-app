@@ -5,10 +5,9 @@ import Search from "./Components/Search/Search";
 import WeatherPage from "./Components/WeatherPage";
 import Background from './Components/Static/Background.png';
 
-function App() {
+const App = () => {
 	const [data, setData] = useState({})
 	const [page, setPage] = useState(true)
-
 	const animations = useSpring({
 		opacity: page ? 1 : 0,
 		y: page ? 0 : 24,

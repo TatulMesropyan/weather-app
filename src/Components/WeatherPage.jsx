@@ -1,19 +1,25 @@
 import React from "react";
-import {Box} from "@mui/material";
 
 const WeatherPage = ({data}) => {
-	console.log(data)
+
+	const TempratureCalculator = () => {
+		return Math.floor(data.main.temp);
+	}
+
 	return (
-		<Box sx={{"margin": "0 40%", "textAlign": "center", "paddingTop": "15%", "position": 'fixed', 'zIndex': '3'}}>
+		<>
 			<div>
+				{data.weather[0].main}
 				{data.weather[0].description}
 			</div>
 			<div>
-				{data.main.temp}
+				<TempratureCalculator/>
 			</div>
-			{data.wind.speed}
+			Temperature is {data.wind.speed} km/h
+			<div>
 			{data.name}
-		</Box>
+			</div>
+		</>
 	)
 }
 export default WeatherPage;
